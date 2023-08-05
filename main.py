@@ -60,14 +60,14 @@ def main():
 
         imgui.text("Welcome to PyNX!")
         imgui.text("Touch is supported")
-        imgui.text("Current dir: " + os.getcwd())
+        imgui.text(f"Current dir: {os.getcwd()}")
 
         if os.getcwd() != "sdmc:/":
             imgui.push_style_color(imgui.COLOR_BUTTON, *FOLDER_COLOR)
             if imgui.button("../", width=200, height=60):
                 os.chdir("..")
             imgui.pop_style_color(1)
-        
+
         dirs = []
         files = []
         for e in os.listdir():
@@ -75,13 +75,13 @@ def main():
                 dirs.append(e)
             else:
                 files.append(e)
-        
+
         dirs = sorted(dirs)
         files = sorted(files)
 
         for e in dirs:
             imgui.push_style_color(imgui.COLOR_BUTTON, *FOLDER_COLOR)
-            if imgui.button(e + "/", width=200, height=60):
+            if imgui.button(f"{e}/", width=200, height=60):
                 os.chdir(e)
             imgui.pop_style_color(1)
 
@@ -93,9 +93,9 @@ def main():
 
             if imgui.button(e, width=200, height=60) and e.endswith(".py"):
                 run_python_module(e)
-            
+
             imgui.pop_style_color(1)
-        
+
         imgui.end_group()
         # end of file picker
 
@@ -111,7 +111,7 @@ def main():
 
         imgui.end_group()
 
-        
+
         imgui.end()
 
         if ERROR:
