@@ -10,11 +10,11 @@ if __name__ == '__main__':
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.bind(("0.0.0.0", DEBUG_PORT))
     sock.listen(1)
-    print("Waiting for remote debug connection on port {}.".format(DEBUG_PORT), flush=True)
+    print(f"Waiting for remote debug connection on port {DEBUG_PORT}.", flush=True)
 
     conn, addr = sock.accept()
 
-    print("Accepted remote debug connection from '{}'.".format(addr[0]))
+    print(f"Accepted remote debug connection from '{addr[0]}'.")
 
     sys.stdout.flush()
     sys.stderr.flush()
